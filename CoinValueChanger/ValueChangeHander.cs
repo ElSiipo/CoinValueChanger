@@ -8,15 +8,14 @@ namespace CoinValueChanger
 {
     public class ValueChangeHander
     {
-        private List<Change> _listOfChange;
+        private List<Change> _listOfValidChange;
 
-        public ValueChangeHander(List<Change> ListOfChange)
+        public ValueChangeHander(List<Change> ListOfValidChange)
         {
-            if (ListOfChange == null || ListOfChange.Count == 0)
+            if (ListOfValidChange == null || ListOfValidChange.Count == 0)
                 throw new ArgumentException("Stupid hobbit! List of change must contain something!");
 
-            _listOfChange = ListOfChange;
-            //_listOfChange = ListOfChange.OrderByDescending(x => x.Value).ToList();
+            _listOfValidChange = ListOfValidChange;
         }
         
 
@@ -24,7 +23,7 @@ namespace CoinValueChanger
         {
             var _changeListToReturn = new List<Change>();
 
-            foreach(var changeValue in _listOfChange)
+            foreach(var changeValue in _listOfValidChange)
             {
                 while(valueToConvert >= changeValue.Value)
                 {
@@ -36,6 +35,20 @@ namespace CoinValueChanger
             }
             
             return _changeListToReturn;
+        }
+
+
+        public List<Change> GetValuesWithAnyCombinations(int valueToConvert)
+        {
+            throw new NotImplementedException();
+
+            var _changeListToReturn = new List<Change>();
+
+            foreach(var changeValue in _listOfValidChange)
+            {
+                //Implement functionality to check combinations...
+            }
+
         }
     }
 }
